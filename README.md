@@ -173,6 +173,18 @@ Application Interface
 Prediction Example
 <img width="1681" height="874" alt="mlb-pitch-predictor:images:prediction_example" src="https://github.com/user-attachments/assets/8df8ee9b-4f67-4fee-84ea-add022b53529" />
 
+--------
+
+Labels
+<img width="355" height="372" alt="labels" src="https://github.com/user-attachments/assets/48383085-766e-4ea4-9658-ebf4f803b107" />
+
+--------
+
+Confusion Matrix
+<img width="990" height="461" alt="matrix" src="https://github.com/user-attachments/assets/8d6b580b-3778-4957-b373-7ffb6a416adb" />
+
+--------
+
 Model Insights
 Feature Importance
 Strike count dominates decision-making (2x more important than any other factor)
