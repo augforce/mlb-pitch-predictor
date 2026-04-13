@@ -109,60 +109,83 @@ The Streamlit interface allows interactive pitch predictions:
 ---
 
 Training Configuration
-Platform: Vertex AI AutoML Tabular
-Optimization metric: Log loss
-Budget: 2 node hours
-Early stopping: Enabled
-Training time: ~2.5 hours (wall-clock)
-Technical Challenges & Solutions
-Challenge 1: Data Type Mismatch
+-Platform: Vertex AI AutoML Tabular
+-Optimization metric: Log loss
+-Budget: 2 node hours
+-Early stopping: Enabled
+-Training time: ~2.5 hours (wall-clock)
 
-Issue: AutoML interpreted numeric columns as categorical strings
-Solution: Convert all inputs to strings during inference: {k: str(v) for k, v in data.items()}
-Challenge 2: Cold Start Latency
+🧪 **Real-World Testing**
 
-Issue: Scale-to-zero causes 30-60 second first prediction delay
-Trade-off: Accept latency for cost savings vs. always-on ($0.10/hr continuous)
-Challenge 3: Model Drift
+--Test Methodology--
 
-Issue: 10% repertoire shift between training and testing
-Solution: Planned weighted retraining with 2026 data
+-Collected pitch-by-pitch data from Glasnow's first 2026 start (97 pitches)
 
-🧪 Real-World Testing
-Test Methodology
-Collected pitch-by-pitch data from Glasnow's first 2026 start (97 pitches)
-Fed each game situation into the model before pitch was thrown
-Compared prediction vs. actual pitch
-Analyzed patterns in correct/incorrect predictions
-Results Analysis
-51% raw accuracy (2x better than random 25% baseline)
-65% adjusted accuracy (when grouping FF/SI as "fastballs")
-68% accuracy in pitcher's counts (0-2, 1-2) - model learned breaking ball strategy
-61% accuracy in hitter's counts (3-1, 2-0) - correctly predicted fastballs
-Model drift identified: 10% shift in pitch repertoire (2024 → 2026)
-Key Learnings
-Model correctly learned game context patterns (count, leverage situations)
-Fastball vs. breaking ball distinction was strong (65% when grouped)
-Four-seam / Sinker confusion is expected (strategically similar pitches)
-Player evolution requires continuous retraining - behavior changes over time
-Detailed analysis: See Medium article "I Built an AI to Predict MLB Pitches. Then Reality Hit."
+-Fed each game situation into the model before pitch was thrown
 
-🔄 Future Improvements
-Planned Enhancements
+-Compared prediction vs. actual pitch
+
+-Analyzed patterns in correct/incorrect predictions
+
+
+--Results Analysis--
+
+-51% raw accuracy (2x better than random 25% baseline)
+
+-65% adjusted accuracy (when grouping FF/SI as "fastballs")
+
+-68% accuracy in pitcher's counts (0-2, 1-2) - model learned breaking ball strategy
+
+-61% accuracy in hitter's counts (3-1, 2-0) - correctly predicted fastballs
+
+-Model drift identified: 10% shift in pitch repertoire (2024 → 2026)
+
+
+--Key Learnings--
+
+-Model correctly learned game context patterns (count, leverage situations)
+
+-Fastball vs. breaking ball distinction was strong (65% when grouped)
+
+-Four-seam / Sinker confusion is expected (strategically similar pitches)
+
+-Player evolution requires continuous retraining - behavior changes over time
+
+
+**Detailed analysis:**
+https://medium.com/@MichaelAugustine78/the-real-challenge-of-production-ml-a-case-study-eb4d921bb4fd
+
+
+**🔄 Future Improvements**
+
+--Planned Enhancements--
+
  Retrain with weighted 2024+2026 data (favor recent pitches)
+ 
  Add pitch location prediction (zone-based classification)
+ 
  Expand to multiple pitchers for comparative analysis
+ 
  Implement continuous learning pipeline (retrain after every 5 games)
+ 
  Add model drift monitoring dashboard
+ 
  A/B test: AutoML vs. custom neural network
-Production ML Lessons Applied
+ 
+
+--Production ML Lessons Applied--
+
  Implement automated model performance monitoring
+ 
  Create retraining triggers (accuracy threshold, data drift detection)
+ 
  Add model versioning and A/B testing framework
+ 
  Build automated data collection pipeline
+ 
  Develop shadow deployment for new model versions
 
-📊 Visualizations
+**📊 Visualizations**
 
 --------
 Application Interface
@@ -214,31 +237,39 @@ Mitigation: Collecting more 2026 games for robust performance evaluation
 Architecture Decisions
 
 Why AutoML vs. Custom Model?
+
 Rapid prototyping (2.5 hours vs. days of tuning)
 Automatic feature engineering
 Good baseline for comparison
 Cost-effective for small datasets
 
 Why Scale-to-Zero?
+
 Demo project with intermittent usage
 90%+ cost savings vs. always-on
 Acceptable latency trade-off for non-production use
 
 Why Streamlit vs. Flask/FastAPI?
+
 Rapid UI development (built in 3 hours)
 Built-in interactivity (no JavaScript needed)
 Perfect for data science demos
 
-📄 License
-This project is licensed under the MIT License - see the LICENSE file for details.
+
+----------
+
 
 👤 Author
 Michael Augustine
 
 GitHub: @augforce
+
 LinkedIn: https://www.linkedin.com/in/michael-augustine-8926a2164/
+
 Website: https://linktr.ee/MichaelAugustine
+
 For questions or collaboration: maugustine78@gmail.com
+
 
 🙏 Acknowledgments
 Baseball Savant for comprehensive Statcast data
@@ -250,6 +281,9 @@ Tyler Glasnow for being an analytically interesting subject
 This project is for educational and portfolio purposes only.
 
 Model endpoint is not publicly accessible (prevents unauthorized cloud costs)
-Predictions are for demonstration only - not for gambling or commercial use
+Predictions are for demonstration only 
+
+- not for gambling or commercial use
+
 Model accuracy varies and is subject to player evolution over time
 Code is provided as reference for ML learning and portfolio evaluation
