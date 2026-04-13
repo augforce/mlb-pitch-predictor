@@ -80,24 +80,6 @@ This aligns with baseball strategy: pitch selection changes dramatically between
 
 ---
 
-## 📁 Project Structure
-mlb-pitch-predictor/
-├── app/
-│   └── app.py              # Streamlit web application
-├── data/
-│   ├── raw/               # Original pitch data
-│   └── processed/         # Cleaned/transformed data
-├── docs/
-│   └── model_metrics.md   # Detailed performance analysis
-├── images/
-│   └── glasnow.png        # App graphics
-├── notebooks/
-│   └── training.ipynb     # Model training notebook (optional)
-├── .gitignore
-├── LICENSE
-├── README.md
-└── requirements.txt
----
 ## 🎮 Application Demo
 
 The Streamlit interface allows interactive pitch predictions:
@@ -182,17 +164,14 @@ Production ML Lessons Applied
 
 📊 Visualizations
 
+--------
 Application Interface
+<img width="1699" height="893" alt="mlb-pitch-predictor:images:app_screenshot" src="https://github.com/user-attachments/assets/2c17fd40-bd8e-4ab5-bd0f-0495b23417d1" />
 
-App Screenshot
-
-Interactive Streamlit interface with game situation controls and real-time predictions
+--------
 
 Prediction Example
-
-Prediction Results
-
-Probability distribution showing 72% Slider prediction in a 0-2 count
+<img width="1681" height="874" alt="mlb-pitch-predictor:images:prediction_example" src="https://github.com/user-attachments/assets/8df8ee9b-4f67-4fee-84ea-add022b53529" />
 
 Model Insights
 Feature Importance
