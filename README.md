@@ -11,6 +11,8 @@ Machine learning model to predict Tyler Glasnow's pitch type based on game situa
 
 ## 🎯 Project Overview
 
+<video src="https://github.com/augforce/mlb-pitch-predictor/blob/main/mLBPitchPredictor.mov"></video>
+
 This project demonstrates end-to-end machine learning pipeline from data collection through deployment and real-world testing. The model predicts pitch type (4-Seam Fastball, Slider, Curveball, Sinker) based on:
 - Count (balls/strikes)
 - Outs
